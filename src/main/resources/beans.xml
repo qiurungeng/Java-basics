@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    使用spring来创建对象，在spring中这些都称为bean
+        类型 变量名=new 类型();
+        bean=对象(new Hello());
+        此处
+        id = 变量名
+        class = 将要通过new创建出来的对象的对象类型
+        properties 相当于给对象中的属性设置一个值！
+     -->
+    <bean id="hello" class="spring.pojo.Hello">
+        <property name="str" value="Spring"/>
+    </bean>
+
+    <bean id="userMybatisDaoImpl" class="spring.dao.UserMyBatisDaoImpl" />
+    <bean id="userDaoImpl" class="spring.dao.UserDaoImpl" />
+    <bean id="userServiceImpl" class="spring.service.UserServiceImpl">
+            <!--
+            ref:引用spring容器中创建好的对象
+            value：具体的值，基本数据类型
+            -->
+        <property name="userDao" ref="userMybatisDaoImpl"/>
+    </bean>
+
+
+    <import resource="student.xml"/>
+    <import resource="people.xml"/>
+</beans>
